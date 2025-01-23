@@ -1,0 +1,31 @@
+﻿using ScreenSound.Modelos;
+
+namespace ScreenSound.Menus;
+
+internal class RegistrarBanda : Menu
+{
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
+    {
+        base.Executar(bandasRegistradas);
+        Console.Clear();
+        ExibirTituloDaOpcao("Registro das bandas");
+        Console.Write("Digite o nome da banda que deseja registrar: ");
+        string nomeDaBanda = Console.ReadLine()!;
+        try
+        {
+            Banda banda = new Banda(nomeDaBanda);
+            bandasRegistradas.Add(nomeDaBanda, banda);
+            Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
+            Thread.Sleep(4000);
+            Console.Clear();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("A banda ja esta registrada\n");
+            Console.WriteLine("Digite qualquer tecla para volta para o menu");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        
+    }
+}
