@@ -1,30 +1,27 @@
 ﻿namespace ScreenSound.Modelos;
 
-internal class Musica
+public class Musica
 {
-    public Musica(Banda artista, string nome)
+    public Musica(string nome, int? anoLancamento)
     {
-        Artista = artista;
         Nome = nome;
+        AnoLancamento = anoLancamento;
     }
 
-    public string Nome { get; }
-    public Banda Artista { get; }
-    public int Duracao { get; set; }
-    public bool Disponivel { get; set; }
-    public string DescricaoResumida => $"A música {Nome} pertence à banda {Artista}";
+    public string Nome { get; set; }
+    public int Id { get; set; }
+    public int? AnoLancamento { get; set; }
+    public virtual Artista Artista { get; set; }
 
     public void ExibirFichaTecnica()
     {
         Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Artista: {Artista.Nome}");
-        Console.WriteLine($"Duração: {Duracao}");
-        if (Disponivel)
-        {
-            Console.WriteLine("Disponível no plano.");
-        } else
-        {
-            Console.WriteLine("Adquira o plano Plus+");
-        }
+      
+    }
+
+    public override string ToString()
+    {
+        return @$"Id: {Id}
+        Nome: {Nome}";
     }
 }
